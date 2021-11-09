@@ -1,15 +1,16 @@
-import { render } from "@testing-library/react";
 import React, {useState, useEffect} from "react";
 import "./App.css";
+import WeatherCurrent from "./components/WeatherCurrent";
 
 const App = () => {
 
   const API_KEY = process.env.REACT_APP_MY_API_ID
 
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState('Boskovice');
 
-  const fetchWeather = () => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Boskovice&units=metric&APPID=${API_KEY}`)
+  const fetchWeather = (city) => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`)
     .then(response => response.json() )
     .then(data => {
       setWeather(data)  
@@ -18,78 +19,20 @@ const App = () => {
   }
 
   useEffect(() => {
-    fetchWeather()
-  }, []);
-
-  const getSunrise = () => {
-    const sunrise = new Date(weather.sys.sunrise * 1000).toLocaleString()
-    const timeSunrise = sunrise.padStart()
-  }
+    fetchWeather(city)
+  }, [city]);
 
   return (
     <div className="App">
       <div className="container">
         <h1>My Weather App</h1>
         <div className="weather">
-          {/* <div className="button-group">
-            <button className="button">City01</button>
-            <button className="button">City02</button>
-            <button className="button">City03</button>
-          </div> */}
-          <div className="weather__current">
-            <h2 className="weather__city" id="mesto">
-              City, Country
-            </h2>
-            <div className="weather__inner weather__inner--center">
-              <div className="weather__section weather__section--temp">
-                <span className="weather__temp-value" id="teplota">
-                  
-                </span>
-                <span className="weather__temp-unit">°C</span>
-                <div className="weather__description" id="popis">
-                  --
-                </div>
-              </div>
-              <div
-                className="weather__section weather__section--icon"
-                id="ikona"
-              >
-                --
-                { <img
-                  // src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                  alt="current weather icon"
-                /> }
-              </div>
-            </div>
-            <div className="weather__inner">
-              <div className="weather__section">
-                <h3 className="weather__title">Wind</h3>
-                <div className="weather__value">
-                  <span id="wind">--</span> km/h
-                </div>
-              </div>
-              <div className="weather__section">
-                <h3 className="weather__title">Humidity</h3>
-                <div className="weather__value">
-                  <span id="humidity">--</span> %
-                </div>
-              </div>
-            </div>
-            <div className="weather__inner">
-              <div className="weather__section">
-                <h3 className="weather__title">Sunrise</h3>
-                <div className="weather__value">
-                  <span id="sunrise">--</span>
-                </div>
-              </div>
-              <div className="weather__section">
-                <h3 className="weather__title">Sunset</h3>
-                <div className="weather__value">
-                  <span id="sunset">--</span>
-                </div>
-              </div>
-            </div>
+          <div className="button-group">
+            <button className="button" onClick={(e) => setCity(e.target.innerText)}>Prague</button>
+            <button className="button" onClick={(e) => setCity(e.target.innerText)}>Reykjavik</button>
+            <button className="button" onClick={(e) => setCity(e.target.innerText)}>Tenerife</button>
           </div>
+          {weather !== null || undefined ? <WeatherCurrent weather={weather}/> : null}
           <div className="weather__forecast" id="predpoved">
             <div className="forecast">
               <div className="forecast__day">Day, date</div>
