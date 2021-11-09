@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import React, {useState, useEffect} from "react";
 import "./App.css";
 
@@ -8,16 +9,22 @@ const App = () => {
   const [weather, setWeather] = useState(null);
 
   const fetchWeather = () => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&APPID=${API_KEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Boskovice&units=metric&APPID=${API_KEY}`)
     .then(response => response.json() )
     .then(data => {
-      setWeather(data)      
+      setWeather(data)  
+      console.log(data)
     })
   }
 
   useEffect(() => {
-    fetchWeather();
+    fetchWeather()
   }, []);
+
+  const getSunrise = () => {
+    const sunrise = new Date(weather.sys.sunrise * 1000).toLocaleString()
+    const timeSunrise = sunrise.padStart()
+  }
 
   return (
     <div className="App">
@@ -36,7 +43,7 @@ const App = () => {
             <div className="weather__inner weather__inner--center">
               <div className="weather__section weather__section--temp">
                 <span className="weather__temp-value" id="teplota">
-                  {Math.round(weather.main.temp)}
+                  
                 </span>
                 <span className="weather__temp-unit">°C</span>
                 <div className="weather__description" id="popis">
@@ -49,7 +56,7 @@ const App = () => {
               >
                 --
                 { <img
-                  src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                  // src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                   alt="current weather icon"
                 /> }
               </div>
