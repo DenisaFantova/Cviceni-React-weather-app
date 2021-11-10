@@ -7,6 +7,7 @@
     border: 5px solid rgba(0, 0, 0, 0.5);
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
   }
+  
   @media (min-width: 800px) {
     .weather {
       width: 700px;
