@@ -1,38 +1,8 @@
 import React from "react";
 import "./style.css";
-import { getDateForest } from "./../../utils/config.js";
+import { getDateForest } from "../../utils/config.js";
 
 const WeatherForecast = ({ forecast, index }) => {
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  // const getDateForest = (unixdate) => {
-  //   const date = new Date(unixdate * 1000);
-  //   return `${days[date.getDay()]}, ${
-  //     months[date.getMonth()]
-  //   } ${date.getDate()} `;
-  // };
 
   return (
     <div className="forecast">

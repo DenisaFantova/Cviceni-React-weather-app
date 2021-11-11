@@ -1,21 +1,9 @@
 import React from "react";
 import "./style.css";
+import { getSunrise } from "../../utils/config.js";
+import { getSunset } from "../../utils/config.js";
 
 const WeatherCurrent = ({ weather }) => {
-  const getSunrise = (sunrise) => {
-    const hours = new Date(sunrise * 1000).getHours();
-    const minutes = new Date(sunrise * 1000).getMinutes();
-    const doubleDigitsMinutes = minutes.toString().padStart(2, "0");
-    return `${hours}:${doubleDigitsMinutes}`;
-  };
-
-  const getSunset = (sunset) => {
-    const hours = new Date(sunset * 1000).getHours();
-    const minutes = new Date(sunset * 1000).getMinutes();
-    const doubleDigitsMinutes = minutes.toString().padStart(2, "0");
-    return `${hours}:${doubleDigitsMinutes}`;
-  };
-
   return (
     <div
       className={
@@ -25,7 +13,7 @@ const WeatherCurrent = ({ weather }) => {
       }
     >
       <h2 className="weather__city" id="mesto">
-        City, Country
+        {`${weather.name}, ${weather.sys.country}`}
       </h2>
       <div className="weather__inner weather__inner--center">
         <div className="weather__section weather__section--temp">
@@ -38,23 +26,25 @@ const WeatherCurrent = ({ weather }) => {
           </div>
         </div>
         <div className="weather__section weather__section--icon" id="ikona">
-          { <img
+          {
+            <img
               src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
               alt="current weather icon"
-            /> }
+            />
+          }
         </div>
       </div>
       <div className="weather__inner">
         <div className="weather__section">
           <h3 className="weather__title">Wind</h3>
           <div className="weather__value">
-            <span id="wind">--</span> km/h
+            <span id="wind">{Math.round(weather.wind.speed)}</span> km/h
           </div>
         </div>
         <div className="weather__section">
           <h3 className="weather__title">Humidity</h3>
           <div className="weather__value">
-            <span id="humidity">--</span> %
+            <span id="humidity">{Math.round(weather.main.humidity)}</span> %
           </div>
         </div>
       </div>

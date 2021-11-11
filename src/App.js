@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { config } from "./utils/config.js";
 import WeatherCurrent from "./components/WeatherCurrent";
 import WeatherForecast from "./components/WeatherForecast";
+import SelectCity from "./components/SelectCity";
+import Loading from "./components/Loading";
+
+import { getWeatherForecast } from "./utils/config.js";
 
 const App = () => {
   const API_KEY = process.env.REACT_APP_MY_API_ID;
@@ -10,10 +13,6 @@ const App = () => {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState("Boskovice");
   const [forecast, setForecast] = useState(null);
-
-  const getWeatherForecast = (array) => {
-    return array.filter((_, index) => index % 8 === 0);
-  };
 
   const fetchWeather = (city) => {
     fetch(
@@ -40,12 +39,17 @@ const App = () => {
     fetchWeatherForecast(city);
   }, [city]);
 
+  const handleChangeCity = (c) => {
+    setCity(c)
+  }
+
   return (
     <div className="App">
       <div className="container">
         <h1>My Weather App</h1>
+        <SelectCity actualCity={city} onChange={handleChangeCity}/>
         <div className="weather">
-          <div className="button-group">
+          {/* <div className="button-group">
             <button
               className="button"
               onClick={(e) => setCity(e.target.innerText)}
@@ -64,10 +68,11 @@ const App = () => {
             >
               Tenerife
             </button>
-          </div>
+          </div> */}
+
           {weather !== null || undefined ? (
             <WeatherCurrent weather={weather} />
-          ) : null}
+          ) : <Loading />}
 
           <div className="weather__forecast" id="predpoved">
             {forecast !== null || undefined
@@ -78,7 +83,7 @@ const App = () => {
                     forecast={forecast}
                   />
                 ))
-              : null}
+              : <Loading />}
           </div>
         </div>
       </div>
