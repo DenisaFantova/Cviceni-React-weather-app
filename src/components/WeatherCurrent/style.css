@@ -6,12 +6,7 @@
 }
 
 @media (min-width: 800px) {
-  .weather {
-    width: 700px;
-    display: flex;
-  }
-  .weather__current,
-  .weather__forecast {
+  .weather__current{
     flex: 0 1 50%;
   }
 }

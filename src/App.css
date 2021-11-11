@@ -12,26 +12,6 @@ h1 {
   align-items: center;
 }
 
-.weather {
-  margin: 10px auto 30px auto;
-  width: 350px;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 5px solid rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
-}
-
-@media (min-width: 800px) {
-  .weather {
-    width: 700px;
-    display: flex;
-  }
-  .weather__current,
-  .weather__forecast {
-    flex: 0 1 50%;
-  }
-}
-
 .weather__forecast {
   min-height: 360px;
   color: var(--black);

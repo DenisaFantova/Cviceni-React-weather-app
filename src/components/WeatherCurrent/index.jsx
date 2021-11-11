@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
-import { getSunrise } from "../../utils/config.js";
-import { getSunset } from "../../utils/config.js";
+
+import { getSunrise } from "../../utils/functions.js";
+import { getSunset } from "../../utils/functions.js";
 
 const WeatherCurrent = ({ weather }) => {
   return (

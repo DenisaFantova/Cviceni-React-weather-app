@@ -4,7 +4,7 @@ import "./App.css";
 import SelectCity from "./components/SelectCity";
 import Weather from "./components/Weather";
 
-import { getWeatherForecast } from "./utils/config.js";
+import { getWeatherForecast } from "./utils/functions";
 
 const App = () => {
   const API_KEY = process.env.REACT_APP_MY_API_ID;
@@ -33,15 +33,15 @@ const App = () => {
       });
   };
 
+  const handleChangeCity = (c) => {
+    setCity(c);
+  };
+
   useEffect(() => {
     fetchWeather(city);
     fetchWeatherForecast(city);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city]);
-
-  const handleChangeCity = (c) => {
-    setCity(c);
-  };
+  }, [city]);  
 
   return (
     <div className="App">

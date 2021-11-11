@@ -1,4 +1,6 @@
 import React from "react";
+import "./style.css";
+
 import WeatherCurrent from "../WeatherCurrent";
 import WeatherForecast from "../WeatherForecast";
 import Loading from "../Loading";

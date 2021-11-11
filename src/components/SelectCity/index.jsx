@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+
 import { cities } from "../../utils/cities.js";
 
 const SelectCity = ({ actualCity, onChange }) => {

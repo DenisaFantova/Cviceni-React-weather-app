@@ -1,12 +1,12 @@
 import React from "react";
 import "./style.css";
-import { getDateForest } from "../../utils/config.js";
+
+import { getDateForecast } from "../../utils/functions.js";
 
 const WeatherForecast = ({ forecast, index }) => {
-
   return (
     <div className="forecast">
-      <div className="forecast__day">{getDateForest(forecast[index].dt)}</div>
+      <div className="forecast__day">{getDateForecast(forecast[index].dt)}</div>
       <div className="forecast__icon">
         {
           <img
@@ -17,7 +17,6 @@ const WeatherForecast = ({ forecast, index }) => {
         }
       </div>
       <div className="forecast__temp">
-        {" "}
         {Math.round(forecast[index].main.temp)}°C
       </div>
     </div>
