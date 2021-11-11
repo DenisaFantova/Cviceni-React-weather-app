@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import WeatherCurrent from "./components/WeatherCurrent";
-import WeatherForecast from "./components/WeatherForecast";
+
 import SelectCity from "./components/SelectCity";
-import Loading from "./components/Loading";
+import Weather from "./components/Weather";
 
 import { getWeatherForecast } from "./utils/config.js";
 
@@ -49,27 +48,7 @@ const App = () => {
       <div className="container">
         <h1>My Weather App</h1>
         <SelectCity actualCity={city} onChange={handleChangeCity} />
-        <div className="weather">
-          {weather !== null || undefined ? (
-            <WeatherCurrent weather={weather} />
-          ) : (
-            <Loading />
-          )}
-
-          <div className="weather__forecast" id="predpoved">
-            {forecast !== null || undefined ? (
-              forecast.map((forecastDay, index) => (
-                <WeatherForecast
-                  key={index}
-                  index={index}
-                  forecast={forecast}
-                />
-              ))
-            ) : (
-              <Loading />
-            )}
-          </div>
-        </div>
+        <Weather weather={weather} forecast={forecast}/>
       </div>
     </div>
   );

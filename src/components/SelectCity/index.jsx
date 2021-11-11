@@ -1,13 +1,13 @@
 import React from "react";
+import "./style.css";
 import { cities } from "../../utils/cities.js";
 
-const SelectCity = ({actualCity, onChange}) => {
+const SelectCity = ({ actualCity, onChange }) => {
+  const handleChange = (e) => {
+    onChange(e.target.value);
+  };
 
-    const handleChange = (e) => {
-        onChange(e.target.value)
-    }
-
-    return (
+  return (
     <div className="select-wrapper">
       <select
         className="select"
@@ -17,7 +17,9 @@ const SelectCity = ({actualCity, onChange}) => {
         onChange={handleChange}
       >
         {cities.map((city) => (
-          <option key={city} value={city}>{city}</option>
+          <option key={city} value={city}>
+            {city}
+          </option>
         ))}
       </select>
     </div>
