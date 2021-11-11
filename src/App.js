@@ -40,14 +40,14 @@ const App = () => {
   }, [city]);
 
   const handleChangeCity = (c) => {
-    setCity(c)
-  }
+    setCity(c);
+  };
 
   return (
     <div className="App">
       <div className="container">
         <h1>My Weather App</h1>
-        <SelectCity actualCity={city} onChange={handleChangeCity}/>
+        <SelectCity actualCity={city} onChange={handleChangeCity} />
         <div className="weather">
           {/* <div className="button-group">
             <button
@@ -72,18 +72,22 @@ const App = () => {
 
           {weather !== null || undefined ? (
             <WeatherCurrent weather={weather} />
-          ) : <Loading />}
+          ) : (
+            <Loading />
+          )}
 
           <div className="weather__forecast" id="predpoved">
-            {forecast !== null || undefined
-              ? forecast.map((forecastDay, index) => (
-                  <WeatherForecast
-                    key={index}
-                    index={index}
-                    forecast={forecast}
-                  />
-                ))
-              : <Loading />}
+            {forecast !== null || undefined ? (
+              forecast.map((forecastDay, index) => (
+                <WeatherForecast
+                  key={index}
+                  index={index}
+                  forecast={forecast}
+                />
+              ))
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>
