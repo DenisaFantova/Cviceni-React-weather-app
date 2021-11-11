@@ -37,6 +37,7 @@ const App = () => {
   useEffect(() => {
     fetchWeather(city);
     fetchWeatherForecast(city);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city]);
 
   const handleChangeCity = (c) => {
@@ -49,27 +50,6 @@ const App = () => {
         <h1>My Weather App</h1>
         <SelectCity actualCity={city} onChange={handleChangeCity} />
         <div className="weather">
-          {/* <div className="button-group">
-            <button
-              className="button"
-              onClick={(e) => setCity(e.target.innerText)}
-            >
-              Prague
-            </button>
-            <button
-              className="button"
-              onClick={(e) => setCity(e.target.innerText)}
-            >
-              Reykjavik
-            </button>
-            <button
-              className="button"
-              onClick={(e) => setCity(e.target.innerText)}
-            >
-              Tenerife
-            </button>
-          </div> */}
-
           {weather !== null || undefined ? (
             <WeatherCurrent weather={weather} />
           ) : (
