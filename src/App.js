@@ -6,9 +6,9 @@ import Weather from "./components/Weather";
 
 import { getWeatherForecast } from "./utils/functions";
 
-const App = () => {
-  const API_KEY = process.env.REACT_APP_MY_API_ID;
+const API_KEY = process.env.REACT_APP_MY_API_ID;
 
+const App = () => {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState("Boskovice");
   const [forecast, setForecast] = useState(null);
@@ -41,14 +41,14 @@ const App = () => {
     fetchWeather(city);
     fetchWeatherForecast(city);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city]);  
+  }, [city]);
 
   return (
     <div className="App">
       <div className="container">
         <h1>My Weather App</h1>
         <SelectCity actualCity={city} onChange={handleChangeCity} />
-        <Weather weather={weather} forecast={forecast}/>
+        <Weather weather={weather} forecast={forecast} />
       </div>
     </div>
   );
